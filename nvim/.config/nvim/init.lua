@@ -1,6 +1,10 @@
-require('options')
-require('plugins')
+vim.g.mapleader = ','
 
+require("tunga.lazy")
+require('options')
+-- require('plugins')
+
+-- require("lazy")
 vim.cmd("colorscheme sorbet")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
@@ -8,7 +12,6 @@ vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
 -- init.lua 
 local g = vim.g
 
-vim.g.mapleader = ','
 local keymap = vim.api.nvim_set_keymap 
 
 -- g.have_nerd_font = true
@@ -43,7 +46,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 
-keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 keymap('n', '<leader><space>', ':ALEFix<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>/', 'gcc', { noremap = true, silent = true })
 keymap('n', '<leader>t', ':tabnew<CR>', { noremap = true, silent = true })
@@ -77,96 +79,17 @@ end, { desc = 'Telescope help tags' })
 
 -- vim.keymap.set('n', '<leader>d', '<cmd>lua builtin.diagnostics()<CR>', { noremap = true, silent = true })
 
---
--- -- Tree-sitter setup
-require'nvim-treesitter.configs'.setup {
-  -- Automatically install parsers for all supported languages
-  -- ensure_installed = { "python", "lua" },
-  
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python" },
-  
-  -- Enable various Tree-sitter features
-  highlight = {
-    enable = true,  -- Enable syntax highlighting
-  },
 
---     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
-  indent = {
-    enable = true,  -- Enable Tree-sitter based indentation
-  },
-
-  -- Enable auto-install for missing parsers
-  auto_install = true,  -- Automatically install parsers for languages when needed
-}
 
 
 -- empty setup using defaults
-require("nvim-tree").setup()
 
 -- OR setup with some options
-require("nvim-tree").setup({
-  sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
-    side = 'right',
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
+
 
 
 -- Set up nvim-cmp
-local cmp = require('cmp')
 
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body)
-    end,
-
-  },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim-lsp' },
-    { name = 'vsnip' },
-  }, {
-    { name = 'buffer' },
-  }),
-})
-
--- Use buffer source for '/' and '?'
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' },
-  },
-})
-
--- Use cmdline & path source for ':'
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' },
-  }, {
-    { name = 'cmdline' },
-  }), 
-  matching = { disallow_symbol_nonprefix_matching = false },
-})
 
 -- Set up lspconfig
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
