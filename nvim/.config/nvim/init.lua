@@ -5,20 +5,20 @@ require('options')
 -- require('plugins')
 
 -- require("lazy")
-vim.cmd("colorscheme sorbet")
+-- vim.cmd("colorscheme sorbet")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
 
 -- init.lua 
 local g = vim.g
 
-local keymap = vim.api.nvim_set_keymap 
+local keymap = vim.api.nvim_set_keymap
 
 -- g.have_nerd_font = true
 
 
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') 
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -50,56 +50,15 @@ keymap('n', '<leader><space>', ':ALEFix<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>/', 'gcc', { noremap = true, silent = true })
 keymap('n', '<leader>t', ':tabnew<CR>', { noremap = true, silent = true })
 
-
-local function get_layout_strategy()
-  return vim.o.columns < 120 and "vertical" or "horizontal"
-end
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', function()
-  builtin.find_files({
-    layout_strategy = get_layout_strategy()
-  })
-end, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', function()
-  builtin.live_grep({
-    layout_strategy = get_layout_strategy()
-  })
-end, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', function()
-  builtin.buffers({
-    layout_strategy = get_layout_strategy()
-  })
-end, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', function()
-  builtin.help_tags({
-    layout_strategy = get_layout_strategy()
-  })
-end, { desc = 'Telescope help tags' })
-
--- vim.keymap.set('n', '<leader>d', '<cmd>lua builtin.diagnostics()<CR>', { noremap = true, silent = true })
-
-
-
-
--- empty setup using defaults
-
--- OR setup with some options
-
-
-
--- Set up nvim-cmp
-
-
 -- Set up lspconfig
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Replace `<YOUR_LSP_SERVER>` with each LSP server you've enabled 
-require('lspconfig')['pyright'].setup({
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities, 
-})
+-- require('lspconfig')['pyright'].setup({
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities, 
+-- })
 
 -- require('lspconfig')['ts_ls'].setup({
 --   capabilities = capabilities,
@@ -118,9 +77,6 @@ vim.g.ale_lint_on_save = 1
 vim.g.ale_lint_on_text_changed = 'always'
 
 vim.g.ale_linters_explicit = 1
-
-vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-
 
 -- slate, desert, sorbet, evening, habamax, retrobox, peachpuff
 

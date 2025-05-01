@@ -10,9 +10,9 @@ vim.opt.breakindent = true
 -- vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 vim.opt.linebreak = true
 
-vim.opt.softtabstop = 4 
+vim.opt.softtabstop = 4
 vim.opt.expandtab = true
-vim.opt.tabstop = 4 
+vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4 -- This controls the functionality of tab key
 
 -- require'nvim-treesitter.configs'.setup{highlight={enable=true}}  
@@ -20,7 +20,7 @@ vim.opt.shiftwidth = 4 -- This controls the functionality of tab key
 
 
 -- optionally enable 24-bit colour
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup()
@@ -31,7 +31,7 @@ require("nvim-tree").setup({
     sorter = "case_sensitive",
   },
   view = {
-    side = 'right',	  
+    side = 'right',
   },
   renderer = {
     group_empty = true,

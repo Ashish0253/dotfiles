@@ -17,10 +17,6 @@ return {
     -- General Plugins
     { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
 
-    -- Telescope Plugins
-    { 'nvim-lua/plenary.nvim' },
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
-
     -- Theme
     { 'AlexvZyl/nordic.nvim', branch = 'main' },
 

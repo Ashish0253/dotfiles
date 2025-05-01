@@ -41,6 +41,19 @@ return {
         "dockerfile",
         "gitignore",
       },
+      sync_install = false, -- install parsers synchronously (only on `:TSInstall` command)
+      auto_install = true,  -- automatically install missing parsers when entering buffer
+      ignore_install = {},  -- list of parsers to ignore installing
+      modules = {},  -- just to remove lsp warning
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
     })
   end
 }
