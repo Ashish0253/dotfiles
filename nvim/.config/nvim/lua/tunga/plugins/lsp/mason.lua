@@ -48,6 +48,7 @@ return {
         "pylint",
         "eslint_d",
       },
+      automatic_installation = true,
     })
   end,
 }
