@@ -25,5 +25,14 @@ return {
 		vim.keymap.set("n", "<leader>l", function()
 			lint.try_lint()
 		end, { desc = "Trigger linting for current file" })
+
+		lint.linters.pylint.cmd = "python"
+		lint.linters.pylint.args = {
+			"-m",
+			"pylint",
+			"-f",
+			"json",
+			vim.api.nvim_buf_get_name(0),
+		}
 	end,
 }
